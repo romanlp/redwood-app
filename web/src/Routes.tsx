@@ -20,7 +20,7 @@ const Routes = () => {
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

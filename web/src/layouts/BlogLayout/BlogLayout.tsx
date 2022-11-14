@@ -1,8 +1,8 @@
 import { Link, routes } from '@redwoodjs/router';
 
 type BlogLayoutProps = {
-  children?: React.ReactNode
-}
+  children?: React.ReactNode;
+};
 
 const BlogLayout = ({ children }: BlogLayoutProps) => {
   return (
@@ -24,7 +24,7 @@ const BlogLayout = ({ children }: BlogLayoutProps) => {
       </header>
       <main>{children}</main>
     </>
-  )
-}
+  );
+};
 
-export default BlogLayout
+export default BlogLayout;
