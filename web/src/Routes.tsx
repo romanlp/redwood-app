@@ -7,7 +7,7 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route, Set } from '@redwoodjs/router';
+import { Router, Route, Set, Private } from '@redwoodjs/router';
 
 import BlogLayout from 'src/layouts/BlogLayout/BlogLayout';
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout';
@@ -15,12 +15,14 @@ import ScaffoldLayout from 'src/layouts/ScaffoldLayout';
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
-        <Route path="/admin/posts/new" page={PostNewPostPage} name="newPost" />
-        <Route path="/admin/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
-        <Route path="/admin/posts/{id:Int}" page={PostPostPage} name="post" />
-        <Route path="/admin/posts" page={PostPostsPage} name="posts" />
-      </Set>
+      <Private unauthenticated="home">
+        <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
+          <Route path="/admin/posts/new" page={PostNewPostPage} name="newPost" />
+          <Route path="/admin/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
+          <Route path="/admin/posts/{id:Int}" page={PostPostPage} name="post" />
+          <Route path="/admin/posts" page={PostPostsPage} name="posts" />
+        </Set>
+      </Private>
 
       <Set wrap={BlogLayout}>
         <Route path="/" page={HomePage} name="home" />
