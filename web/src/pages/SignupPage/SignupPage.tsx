@@ -1,18 +1,18 @@
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { useAuth } from '@redwoodjs/auth';
 import {
+  FieldError,
   Form,
   Label,
-  TextField,
   PasswordField,
-  FieldError,
   Submit,
+  TextField,
 } from '@redwoodjs/forms';
 import { Link, navigate, routes } from '@redwoodjs/router';
 import { MetaTags } from '@redwoodjs/web';
-import { toast, Toaster } from '@redwoodjs/web/toast';
+import { Toaster, toast } from '@redwoodjs/web/toast';
+
+import { useAuth } from '../../auth';
 
 const SignupPage = () => {
   const { isAuthenticated, signUp } = useAuth();
@@ -58,6 +58,28 @@ const SignupPage = () => {
               <div className="rw-form-wrapper">
                 <Form onSubmit={onSubmit} className="rw-form-wrapper">
                   <Label
+                    name="name"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                  >
+                    Name
+                  </Label>
+                  <TextField
+                    name="name"
+                    className="rw-input"
+                    autoComplete="nickname"
+                    errorClassName="rw-input rw-input-error"
+                    ref={usernameRef}
+                    validation={{
+                      required: {
+                        value: true,
+                        message: 'Username is required',
+                      },
+                    }}
+                  />
+                  <FieldError name="username" className="rw-field-error" />
+
+                  <Label
                     name="username"
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
@@ -67,6 +89,7 @@ const SignupPage = () => {
                   <TextField
                     name="username"
                     className="rw-input"
+                    autoComplete="email"
                     errorClassName="rw-input rw-input-error"
                     ref={usernameRef}
                     validation={{

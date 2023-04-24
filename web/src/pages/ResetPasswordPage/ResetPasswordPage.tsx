@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useAuth } from '@redwoodjs/auth';
 import {
+  FieldError,
   Form,
   Label,
   PasswordField,
   Submit,
-  FieldError,
 } from '@redwoodjs/forms';
 import { navigate, routes } from '@redwoodjs/router';
 import { MetaTags } from '@redwoodjs/web';
-import { toast, Toaster } from '@redwoodjs/web/toast';
+import { Toaster, toast } from '@redwoodjs/web/toast';
+
+import { useAuth } from '../../auth';
 
 const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
   const { isAuthenticated, reauthenticate, validateResetToken, resetPassword } =
